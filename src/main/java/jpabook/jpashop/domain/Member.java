@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 public class Member {
 
 		@Id @GeneratedValue(strategy = GenerationType.AUTO) // 기본 값 : 방언에 따라 전략선택 
+		@Column(name="MEMBER_ID")
 		private Long id;
 		
 		private String name;
