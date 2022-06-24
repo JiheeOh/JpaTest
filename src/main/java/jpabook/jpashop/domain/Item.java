@@ -1,9 +1,13 @@
 package jpabook.jpashop.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Item {
@@ -16,6 +20,9 @@ public class Item {
 	private int price;
 	private int stockQuantity;
 	
+	// Category와 다대다 매핑, 연관관계 주인은 카테고리
+	@ManyToMany(mappedBy="items")
+	private List<Category> categories = new ArrayList<>();
 	
 	public Long getId() {
 		return Id;

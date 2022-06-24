@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,13 +35,21 @@ public class Order {
 	private Member member;
 	
 	// order와 orderItem 양방향 관계 설정 
-	@OneToMany(mappedBy ="ORDER_ID")
+	@OneToMany(mappedBy ="order")
 	private List<OrderItem> orderItems = new ArrayList<>();
 	
 	private LocalDateTime orderDate;
 	
 	@Enumerated(EnumType.STRING)  //ORDINAL 사용 금지! 
 	private OrderStatus status;
+	
+	//일대일 관리
+	@OneToOne
+	@JoinColumn(name = "DELIVERY_ID")
+	private Delivery delivery;
+	
+	
+	
 
 	// 양방향관계 메소드 생성 
 	public void addOrderItem(OrderItem orderItem) {
