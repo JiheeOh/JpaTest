@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ORDERS") // ORDER를 예약어로 사용하는 DB가 있기 때문에 테이블 이름은 ORDERS로 많이 사용한다. 
-public class Order {
+public class Order extends BaseEntity {
 	
 	@Id @GeneratedValue
 	@Column(name="ORDER_ID") // DB와 컬럼명이 다를 경우 작성 

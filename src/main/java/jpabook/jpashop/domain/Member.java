@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity {
 
 		@Id @GeneratedValue(strategy = GenerationType.AUTO) // 기본 값 : 방언에 따라 전략선택 
 		@Column(name="MEMBER_ID")
