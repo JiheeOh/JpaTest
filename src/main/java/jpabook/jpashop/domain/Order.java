@@ -5,10 +5,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,12 +32,12 @@ public class Order extends BaseEntity {
 	*/
 	
 	// 객체 지향적인 설계
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name ="MEMBER_ID")
 	private Member member;
 	
 	// order와 orderItem 양방향 관계 설정 
-	@OneToMany(mappedBy ="order")
+	@OneToMany(mappedBy ="order", cascade =CascadeType.ALL)
 	private List<OrderItem> orderItems = new ArrayList<>();
 	
 	private LocalDateTime orderDate;
@@ -44,8 +46,8 @@ public class Order extends BaseEntity {
 	private OrderStatus status;
 	
 	//일대일 관리
-	@OneToOne
-	@JoinColumn(name = "DELIVERY_ID")
+	@OneToOne (fetch=FetchType.LAZY, cascade =CascadeType.ALL)
+	@JoinColumn(name = "DELIVERY_ID" )
 	private Delivery delivery;
 	
 	
